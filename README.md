@@ -1,8 +1,6 @@
 # Pool Game Web Application
 
-This project is a web-based physics simulation built with **C**, **SWIG**, and **Python**, with a frontend in **HTML/CSS/JavaScript**.  
-The C code is compiled into a shared library (`libphylib.so`), which is wrapped with SWIG so it can be used from Python (`phylib.py` and `_phylib.so`).  
-The Python backend (`A4server.py`) provides routes that the frontend can call, while the frontend (`index.html`, `form.html`, `animate.html`, etc.) handles the UI.
+This project is a web-based 8-ball game, a full-stack application built with C, Python, SQL, JavaScript, HTML, and CSS. It integrates a custom physics library written in C (exposed to Python through SWIG) with a Python backend and a database for tracking player information and game states. The frontend provides an interactive interface where users can play a simulated pool game, while the backend handles game logic, data storage, and winner determination.
 
 ---
 
