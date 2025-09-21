@@ -54,6 +54,25 @@ Server listening in port: 8000
 
 ---
 
+## Game Data and Database
+
+This project uses **SQLite** (`phylib.db`) to store and manage game data.  
+The database keeps track of:
+- Players and their names (entered from `form.html`)
+- Game state (ball positions, turns, and shots taken)
+- Scores and fouls
+- The final outcome (who won the game)
+
+During gameplay:
+1. When players enter their names in the start form, they are saved into the database.
+2. Each shot taken is recorded with its result (balls pocketed, cue ball reset, etc.).
+3. The database is queried after each shot to check if the game-ending conditions are met (e.g., sinking the 8-ball).
+4. Once a winner is determined, the backend uses the stored data to identify the winning player and sends this result back to the frontend.
+
+This ensures that the game state is persistent across turns and makes it easier to manage scoring logic and determine the winner correctly.
+
+---
+
 ## Notes:
 
 - the light coloured balls go to player 1 and darker coloured ones go to player 2, the black ball is the 8-ball
