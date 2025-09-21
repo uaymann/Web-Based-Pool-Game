@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pool Table</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js">
+    </script>
+
+
+    <script>
+      $(document).ready(function() {
+      function trackit(event) {
+          $('#valx').remove();
+          $('#valy').remove();
+          $('<div id="valx">'+event.pageX+'</div>').appendTo("#x");
+          $('<div id="valy">'+event.pageY+'</div>').appendTo("#y");
+      }
+
+        $('svg').mousemove(trackit);
+        $('#currentPlayer').text('Current Player: ' + currentPlayerName);
+
+        var winner = localStorage.getItem('winner');
+      
+        // Function to display an alert message and redirect to another page
+        function handleGameEnd() {
+            alert("Game Over. " + winner + " wins!"); // Display the alert message
+            localStorage.removeItem('winner'); // Remove winner from localStorage
+            if (window.location.pathname.includes("index.html")) {
+                window.location.href = '/form.html'; // Redirect to form.html
+            }
+        }
+
+        // Check if the current player is not null (i.e., game is ongoing)
+        if (currentPlayerName == null || currentPlayerName == "" ||  currentPlayerName == 'None') {
+            // Game has ended, execute the function to handle game end
+            handleGameEnd();
+        }
+
+      });
+
+    </script>
+    <script src="game.js"></script>
+
+  </head>
+  <body>
+    <div id="container">
+      <div id="svg_box">
+        <!-- SVG_CONTENT -->
+        <svg width="700" height="1375" viewBox="-25 -25 1400 2750"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink">
+
+
+              <line id="line" x1="0" y1="0" x2="0" y2="0" stroke="black" stroke-width="4" style="display: none;"></line>
+
+
+              <!-- <circle id="ball" cx="100" cy="1025" r="28" fill="WHITE" /> -->
+              </svg>
+
+        </div>
+      <div id="currentPlayer">Current Player: </div>
+    </div>
+  </body>
+</html>

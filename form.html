@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pool Game Setup</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif; /* Change the font family if desired */
+    }
+
+    label {
+      font-size: 1.5em; /* Increase font size of labels */
+    }
+
+    input[type="text"] {
+      width: 30%; /* Make input boxes span full width */
+      padding: 10px; /* Increase padding for better visibility */
+      font-size: 1.5em; /* Increase font size of input text */
+      margin-bottom: 10px; /* Add some space between input boxes */
+    }
+
+    input[type="submit"] {
+      font-size: 1.5em; /* Increase font size of submit button */
+      padding: 10px 20px; /* Increase padding for better visibility */
+    }
+  </style>
+  <script>
+    $(document).ready(function() {
+      // Function to handle form submission
+      $("#gameForm").submit(function(event) {
+        // Prevent default form submission
+        event.preventDefault();
+        
+        // Get values from input fields
+        var player1Name = $("#player1_name").val();
+        var player2Name = $("#player2_name").val();
+        var gameName = $("#game_name").val();
+        
+        // Create a JSON object with form data
+        var formData = {
+          player1_name: player1Name,
+          player2_name: player2Name,
+          game_name: gameName
+        };
+
+        // Perform AJAX post request to handle form data
+        $.ajax({
+          url: "/formresponse",
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify(formData),
+          success: function(data, status) {
+            // Display response message
+            alert("Status: " + status);
+            window.location.href = "index.html";
+          },
+          error: function(xhr, status, error) {
+            // Handle errors
+            console.error("Error:", error);
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <form id="gameForm">
+    <h2>Player 1</h2>
+    <label for="player1_name">Player Name:</label>
+    <input type="text" id="player1_name" name="player1_name" size="30" required />
+    <h2>Player 2</h2>
+    <label for="player2_name">Player Name:</label>
+    <input type="text" id="player2_name" name="player2_name" size="30" required />
+    <h2>Game Details</h2>
+    <label for="game_name">Game Name:</label>
+    <input type="text" id="game_name" name="game_name" size="30" required />
+    <h3><input type="submit" value="Start Game" /></h3>
+  </form>
+</body>
+</html>

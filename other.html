@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pool Table</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js">
+    </script>
+        
+    <script>
+        $(document).ready(function() {
+        if (localStorage.getItem('contentFetched') !== 'true') {
+            $.ajax({
+            url: '/',
+            method: 'GET',
+            success: function(data) {
+                console.log('Data fetched');
+                $('#table-svg').html(data);
+                localStorage.setItem('contentFetched', 'true');
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching content: ", error);
+                $('#table-svg').html("<p>Error loading content.</p>");
+            }
+            });
+    
+        }
+        
+        function trackit(event) {
+            $('#valx').remove();
+            $('#valy').remove();
+            $('<div id="valx">' + event.pageX + '</div>').appendTo("#x");
+            $('<div id="valy">' + event.pageY + '</div>').appendTo("#y");
+        }
+    
+    //after svg is loaded we do the tracking
+    $(document).on('mousemove', 'svg', trackit);
+        });
+    </script>
+    <script src="game.js"></script>
+
+</head>
+<body>
+  <div id="svg_box">
+        <!-- SVG_CONTENT -->
+        <svg width="700" height="1375" viewBox="-325 -325 2000 3475" xmlns="http://www.w3.org/2000/svg">
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+        <line id="line" x1="0" y1="0" x2="0" y2="0" stroke="black" stroke-width="4" style="display: none;"></line>
+        </svg>
+  </div>
+
+  <div id="x">x=</div>
+  <div id="y">y=</div>
+
+</body>
+</html>
