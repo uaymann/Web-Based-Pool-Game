@@ -49,7 +49,7 @@ Server listening in port: 8000
 ## How to play
 1. Go to `http://localhost:8000/form.html` in your browser to open the start page where you put in player names.
 2. Once you hit "Start Game" the game will begin and indicate whose turn is first.
-3. Drag your mouse in the direction you want you cue ball to go; the length of the line you drag out will determine the ball's speed and acceleration.
+3. Drag your mouse in the direction you want your cue ball to go; the length of the line you drag out will determine the ball's speed and acceleration.
 4. Once a winner is determined, the game will end and the browser will show a pop-up that says which player won the game.
 
 ---
